@@ -10,19 +10,19 @@
       self,
       nixpkgs,
       ...
-    }:
+    }@inputs:
     let
       inherit (nixpkgs) lib;
       systems = lib.systems.flakeExposed;
 
       forAllSystems = f: lib.genAttrs systems (system: f (import nixpkgs { inherit system; }));
-
-      anvimVersion = self.shortRev or self.dirtyShortRev or "unknown";
     in
     {
       packages = forAllSystems (pkgs: {
-        default = pkgs.callPackage ./nix/default.nix { inherit pkgs anvimVersion; };
+        default = pkgs.callPackage ./nix/default.nix { inherit inputs; };
       });
+
+      homeManagerModules.default = ./nix/hm-module.nix;
 
       formatter = forAllSystems (pkgs: pkgs.callPackage ./nix/formatter.nix { inherit pkgs; });
     };
