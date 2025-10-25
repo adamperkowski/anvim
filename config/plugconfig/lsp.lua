@@ -1,8 +1,14 @@
-local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-lspconfig.lua_ls.setup({
+vim.lsp.enable({
+  "lua_ls",
+  "nixd",
+  "rust_analyzer",
+  "bashls",
+})
+
+vim.lsp.config("lua_ls", {
   capabilities = capabilities,
 
   on_init = function(client)
@@ -34,18 +40,4 @@ lspconfig.lua_ls.setup({
   settings = {
     Lua = {},
   },
-})
-
-lspconfig.nixd.setup({
-  capabilities = capabilities,
-})
-
-lspconfig.rust_analyzer.setup({
-  capabilities = capabilities,
-})
-
-lspconfig.bashls.setup({
-  filetypes = { "sh", "bash", "zsh" },
-
-  capabilities = capabilities,
 })
