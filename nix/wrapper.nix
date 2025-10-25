@@ -117,6 +117,8 @@ lib.extendMkDerivation {
 
         wrapProgram $out/bin/nvim "''${wrapperArgs[@]}"
 
+        ln -s $out/bin/nvim $out/bin/${pname}
+
         runHook postInstall
       '';
 
