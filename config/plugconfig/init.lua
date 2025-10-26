@@ -1,4 +1,5 @@
 require("anvim.plugconfig.catppuccin")
+require("anvim.plugconfig.lualine")
 
 require("anvim.plugconfig.jule")
 
