@@ -36,6 +36,7 @@ local mode_map = {
   [""] = "visual UᴗU",
   ["R"] = "replace -ᴗ-",
   ["c"] = "cmd xᴗx",
+  ["no"] = "no ???",
 }
 
 require("lualine").setup({
