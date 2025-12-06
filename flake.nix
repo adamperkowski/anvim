@@ -22,6 +22,10 @@
         default = pkgs.callPackage ./nix/default.nix { inherit inputs; };
       });
 
+      legacyPackages = forAllSystems (pkgs: {
+        wrapNeovim = pkgs.callPackage ./nix/wrapper.nix { };
+      });
+
       homeManagerModules.default = ./nix/hm-module.nix;
 
       devShells = forAllSystems (pkgs: {
