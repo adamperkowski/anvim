@@ -2,7 +2,7 @@
   description = "my neovim config :3";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=release-25.11";
+    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
   };
 
   outputs =

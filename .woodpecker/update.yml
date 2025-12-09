@@ -1,0 +1,53 @@
+when:
+  event: cron
+  cron: update
+
+steps:
+  - name: nix
+    image: nixos/nix
+    commands:
+      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      - nix flake update --inputs-from .
+  - name: commit
+    image: alpine/git
+    depends_on: [nix]
+    environment:
+      OWNER: adamperkowski
+      REPO: anvim
+      TOKEN:
+        from_secret: TOKEN
+    commands:
+      - |
+        if git diff --quiet; then
+          echo "no changes, skipping"
+          exit 78
+        fi
+      - git config --global user.name "woodpecker-bot"
+      - git config --global user.email "woodpecker-bot@obermui.de"
+      - git add flake.lock
+      - |
+        git commit -m "nix: update flake inputs"
+      - git branch -M nix/update-flake-inputs
+      - git remote set-url origin "https://${OWNER}:${TOKEN}@codeberg.org/${OWNER}/${REPO}.git"
+      - git push -u origin nix/update-flake-inputs --force
+  - name: open pr
+    image: alpine/curl
+    depends_on: [commit]
+    environment:
+      OWNER: adamperkowski
+      REPO: anvim
+      TOKEN:
+        from_secret: TOKEN
+    commands:
+      - |
+        curl -sS -X POST \
+          -H "Authorization: token ${TOKEN}" \
+          -H "Content-Type: application/json" \
+          "https://codeberg.org/api/v1/repos/${OWNER}/${REPO}/pulls" \
+          -d '{
+            "title": "nix: update flake inputs",
+            "head": "nix/update-flake-inputs",
+            "base": "main",
+            "body": "hi :3",
+            "allow_maintainer_edit": true
+          }'
