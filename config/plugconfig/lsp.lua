@@ -4,6 +4,7 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 vim.lsp.enable({
   "lua_ls",
   "nixd",
+  "gopls",
   "rust_analyzer",
   "bashls",
 })
