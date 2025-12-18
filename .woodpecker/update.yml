@@ -2,6 +2,10 @@ when:
   event: cron
   cron: update
 
+variables:
+  - &branch 'nix/update-flake-inputs'
+  - &message 'nix: update flake inputs'
+
 steps:
   - name: nix
     image: nixos/nix
@@ -12,42 +16,35 @@ steps:
     image: alpine/git
     depends_on: [nix]
     environment:
-      OWNER: adamperkowski
-      REPO: anvim
+      BRANCH: *branch
+      MESSAGE: *message
       TOKEN:
         from_secret: TOKEN
     commands:
       - |
         if git diff --quiet; then
-          echo "no changes, skipping"
-          exit 78
+          echo "no changes"
+          exit 0
         fi
       - git config --global user.name "woodpecker-bot"
       - git config --global user.email "woodpecker-bot@obermui.de"
+      - git remote set-url origin "https://${CI_REPO_OWNER}:$${TOKEN}@codeberg.org/${CI_REPO}.git"
+      - git checkout -b "$${BRANCH}"
       - git add flake.lock
-      - |
-        git commit -m "nix: update flake inputs"
-      - git branch -M nix/update-flake-inputs
-      - git remote set-url origin "https://${OWNER}:${TOKEN}@codeberg.org/${OWNER}/${REPO}.git"
-      - git push -u origin nix/update-flake-inputs --force
-  - name: open pr
-    image: alpine/curl
+      - git commit -m "$${MESSAGE}"
+      - git push -u origin "$${BRANCH}" --force
+  - name: open pull request
+    image: woodpeckercommunity/gitea-pull-request-create-plugin
     depends_on: [commit]
-    environment:
-      OWNER: adamperkowski
-      REPO: anvim
-      TOKEN:
+    settings:
+      gitea_address: https://codeberg.org
+      gitea_token:
         from_secret: TOKEN
-    commands:
-      - |
-        curl -sS -X POST \
-          -H "Authorization: token ${TOKEN}" \
-          -H "Content-Type: application/json" \
-          "https://codeberg.org/api/v1/repos/${OWNER}/${REPO}/pulls" \
-          -d '{
-            "title": "nix: update flake inputs",
-            "head": "nix/update-flake-inputs",
-            "base": "main",
-            "body": "hi :3",
-            "allow_maintainer_edit": true
-          }'
+      owner: ${CI_REPO_OWNER}
+      repo: ${CI_REPO_NAME}
+      branch: *branch
+      base_branch: ${CI_REPO_DEFAULT_BRANCH}
+      pr_title: *message
+      pr_body: "beep boop :3"
+      skip_on_missing_branch: true
+      delete_branch_after_merge: true
