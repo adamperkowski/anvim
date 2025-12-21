@@ -6,7 +6,7 @@
         "narHash": "sha256-Rgx3RPys4DTsfZPBbJa2QpJGbjnWVC7V2Rlviyp4qMI=",
         "rev": "c6f52ebd45e5925c188d1a20119978aa4ffd5ef6",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.1948.c6f52ebd45e5/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.1948.c6f52ebd45e5/nixexprs.tar.xz?lastModified=1765838191&rev=c6f52ebd45e5925c188d1a20119978aa4ffd5ef6"
       },
       "original": {
         "type": "tarball",
