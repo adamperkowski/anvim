@@ -1,19 +1,22 @@
 {
-  pkgs,
+  vimPlugins,
+  callPackage,
+  nodejs,
   inputs,
   self ? inputs.self,
   anvimVersion ? self.shortRev or self.dirtyShortRev or "unknown",
+  neovim-unwrapped,
 }:
 
 let
-  wrapNeovim = pkgs.callPackage ./wrapper.nix { };
+  wrapNeovim = callPackage ./wrapper.nix { inherit neovim-unwrapped; };
 in
 wrapNeovim {
   pname = "anvim";
   versionSuffix = anvimVersion;
   userConfig = ../config;
 
-  plugins = with pkgs.vimPlugins; [
+  plugins = with vimPlugins; [
     catppuccin-nvim
     lualine-nvim
 
@@ -26,18 +29,17 @@ wrapNeovim {
 
     indent-blankline-nvim
     nvim-autopairs
-    undotree
     gitsigns-nvim
     copilot-lua
     nvim-colorizer-lua
 
-    cord-nvim
+    (cord-nvim.overrideAttrs { doCheck = false; })
     vim-wakatime
 
     jule-nvim
   ];
 
-  extraPackages = with pkgs; [
+  extraPackages = [
     nodejs
   ];
 }

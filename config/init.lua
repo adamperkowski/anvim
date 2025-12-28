@@ -1,12 +1,22 @@
 require("anvim.keymap")
 
-vim.opt.mouse = ""
-vim.opt.number = true
-vim.opt.exrc = true
+vim.cmd.packadd("nvim.undotree")
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.o.mouse = ""
+vim.o.number = true
+vim.o.exrc = true
+
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undodir = vim.fn.stdpath("state") .. "/undodir"
+vim.o.undofile = true
+
+vim.o.hidden = true
+vim.o.sessionoptions = "help,tabpages,winsize"
 
 vim.g.rustfmt_autosave = 1
 

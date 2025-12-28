@@ -1,9 +1,10 @@
+inputs:
 {
   lib,
   pkgs,
   config,
   ...
-}@args:
+}:
 
 let
   inherit (lib)
@@ -21,7 +22,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = pkgs.callPackage ./default.nix { inputs = args.inputs; };
+      default = pkgs.callPackage ./default.nix { inputs = inputs; neovim-unwrapped = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default; };
     };
 
     defaultEditor = mkOption {

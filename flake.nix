@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
+    neovim-nightly = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -15,7 +19,10 @@
       inherit (nixpkgs) lib;
       systems = lib.systems.flakeExposed;
 
-      forAllSystems = f: lib.genAttrs systems (system: f (import nixpkgs { inherit system; }));
+      forAllSystems = f: lib.genAttrs systems (system: f (import nixpkgs {
+        inherit system;
+        overlays = [ inputs.neovim-nightly.overlays.default ];
+      }));
     in
     {
       packages = forAllSystems (pkgs: {
@@ -26,7 +33,7 @@
         wrapNeovim = pkgs.callPackage ./nix/wrapper.nix { };
       });
 
-      homeManagerModules.default = ./nix/hm-module.nix;
+      homeManagerModules.default = import ./nix/hm-module.nix inputs;
 
       devShells = forAllSystems (pkgs: {
         default = pkgs.callPackage ./nix/shell.nix { inherit pkgs; };
