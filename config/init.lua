@@ -2,6 +2,11 @@ require("anvim.keymap")
 
 vim.cmd.packadd("nvim.undotree")
 
+vim.o.grepprg = "grep -rni --"
+vim.o.grepformat = "%f:%l:%c:%m"
+
+require("vim._extui").enable({ enable = true, msg = { target = "msg" } })
+
 vim.o.mouse = ""
 vim.o.number = true
 vim.o.exrc = true

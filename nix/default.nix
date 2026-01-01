@@ -19,6 +19,7 @@ wrapNeovim {
   plugins = with vimPlugins; [
     catppuccin-nvim
     lualine-nvim
+    artio-nvim
 
     nvim-lspconfig
 

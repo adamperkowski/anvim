@@ -2,7 +2,7 @@
   description = "my neovim config :3";
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,10 +19,17 @@
       inherit (nixpkgs) lib;
       systems = lib.systems.flakeExposed;
 
-      forAllSystems = f: lib.genAttrs systems (system: f (import nixpkgs {
-        inherit system;
-        overlays = [ inputs.neovim-nightly.overlays.default ];
-      }));
+      forAllSystems =
+        f:
+        lib.genAttrs systems (
+          system:
+          f (
+            import nixpkgs {
+              inherit system;
+              overlays = [ inputs.neovim-nightly.overlays.default ];
+            }
+          )
+        );
     in
     {
       packages = forAllSystems (pkgs: {
