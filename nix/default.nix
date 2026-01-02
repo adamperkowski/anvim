@@ -31,7 +31,6 @@ wrapNeovim {
     indent-blankline-nvim
     nvim-autopairs
     gitsigns-nvim
-    copilot-lua
     nvim-colorizer-lua
 
     (cord-nvim.overrideAttrs { doCheck = false; })
