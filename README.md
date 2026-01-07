@@ -5,7 +5,7 @@ my neovim config :3 (nix is certified crazy)
 try it out with
 
 ```sh
-nix run github:adamperkowski/anvim
+nix run github:koibtw/anvim
 ```
 
 ## Features
@@ -34,7 +34,7 @@ This project contains code under multiple licenses.
   <img
     width="496"
     height="32"
-    src="https://adamperkowski.dev/img/mimi-banner.gif"
+    src="https://koi.rip/img/mimi-banner.gif"
     alt="mimi banner"
     align="center">
 </div>
