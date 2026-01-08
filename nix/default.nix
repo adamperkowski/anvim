@@ -34,7 +34,6 @@ wrapNeovim {
     nvim-colorizer-lua
 
     (cord-nvim.overrideAttrs { doCheck = false; })
-    vim-wakatime
 
     jule-nvim
   ];
