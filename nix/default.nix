@@ -7,6 +7,7 @@
   anvimVersion ? self.shortRev or self.dirtyShortRev or "unknown",
   neovim-unwrapped,
   fetchFromGitea,
+  fetchFromGitHub,
   lua-language-server,
 }:
 
