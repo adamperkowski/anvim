@@ -7,6 +7,7 @@
   anvimVersion ? self.shortRev or self.dirtyShortRev or "unknown",
   neovim-unwrapped,
   fetchFromGitea,
+  lua-language-server,
 }:
 
 let
@@ -49,5 +50,6 @@ wrapNeovim {
 
   extraPackages = [
     nodejs
+    lua-language-server
   ];
 }
