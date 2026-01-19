@@ -1,8 +1,3 @@
-vim.pack.add({ { src = "https://github.com/3rd/image.nvim" } })
-require("image").setup()
-
-vim.pack.add({ { src = "https://codeberg.org/koibtw/nidhogg.nvim" } })
-
 require("anvim.keymap")
 
 vim.cmd.packadd("nvim.undotree")
@@ -45,3 +40,10 @@ require("anvim.plugconfig")
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "help",
+  callback = function()
+    vim.cmd.wincmd("L")
+  end,
+})

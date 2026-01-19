@@ -13,7 +13,7 @@ nix run github:koibtw/anvim
 - Up-to-date with latest neovim
 - Fast af (think so at least)
 - Full nix support
-- Catppuccin :3
+- [Evergarden] :3
 - LSP and stuff
 - NO bloat
 - Much more...
@@ -27,6 +27,7 @@ This project contains code under multiple licenses.
 
 ## Credits
 
+- [robin] - aaaaaaaaaaaaaaaaa
 - [isabel] - original nix wrapper
 - [sebaguardian] - emotional support
 
@@ -39,6 +40,7 @@ This project contains code under multiple licenses.
     align="center">
 </div>
 
+[Evergarden]: https://evergarden.moe
 [isabel]: https://github.com/isabelroses
 [sebaguardian]: https://github.com/Sebaguardian
 
