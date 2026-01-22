@@ -48,10 +48,7 @@ wrapNeovim {
 
     nvim-lspconfig
 
-    nvim-cmp
-    cmp-nvim-lsp
-    cmp-buffer
-    cmp-path
+    blink-cmp
 
     indent-blankline-nvim
     nvim-autopairs
