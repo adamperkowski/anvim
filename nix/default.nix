@@ -22,7 +22,7 @@ wrapNeovim {
 
   plugins = with vimPlugins; [
     (vimUtils.buildVimPlugin {
-      pname = "nvim";
+      pname = "evergarden-nvim";
       version = "0-unstable-2026-01-11";
       src = fetchgit {
         url = "https://codeberg.org/evergarden/nvim";
@@ -33,11 +33,8 @@ wrapNeovim {
         "evergarden.extras"
         "minidoc"
       ];
-      meta.homepage = "https://codeberg.org/everviolet/nvim";
-      meta.hydraPlatforms = [ ];
     })
 
-    #evergarden-nvim
     lualine-nvim
     (artio-nvim.overrideAttrs {
       src = fetchFromGitea {
@@ -58,8 +55,10 @@ wrapNeovim {
 
     indent-blankline-nvim
     nvim-autopairs
-    gitsigns-nvim
     nvim-colorizer-lua
+
+    mini-icons
+    mini-diff
 
     (cord-nvim.overrideAttrs { doCheck = false; })
 
