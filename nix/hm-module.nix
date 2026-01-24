@@ -37,6 +37,6 @@ in
     };
 
     home.packages = [ cfg.package ];
-    home.sessionVariables = mkIf cfg.defaultEditor { EDITOR = "anvim"; };
+    home.sessionVariables = mkIf cfg.defaultEditor { EDITOR = "nvim"; };
   };
 }
