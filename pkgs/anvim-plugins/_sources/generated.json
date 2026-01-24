@@ -1,0 +1,47 @@
+{
+    "evergarden": {
+        "cargoLocks": null,
+        "date": "2026-01-21",
+        "extract": null,
+        "name": "evergarden",
+        "passthru": {
+            "as": "evergarden"
+        },
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "b49ee5bef999955e688ea883a1f7b14cd41de8b4",
+            "sha256": "sha256-55iIlWrwqtaAaOPbgmKXd5d9U4Y9ICBRJudh2VSNRxg=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://codeberg.org/evergarden/nvim"
+        },
+        "version": "b49ee5bef999955e688ea883a1f7b14cd41de8b4"
+    },
+    "lynn-nvim": {
+        "cargoLocks": null,
+        "date": "2026-01-04",
+        "extract": null,
+        "name": "lynn-nvim",
+        "passthru": {
+            "as": "lynn",
+            "start": "true"
+        },
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "1721a5a524b49232a367a3c9215adfa4e99644c4",
+            "sha256": "sha256-tQ3vFI8iANLOnf97wF5H5uHnKWlarMTqNqexK06XRpQ=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://codeberg.org/comfysage/lynn.nvim"
+        },
+        "version": "1721a5a524b49232a367a3c9215adfa4e99644c4"
+    }
+}

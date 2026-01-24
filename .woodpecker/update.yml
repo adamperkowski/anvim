@@ -3,8 +3,8 @@ when:
   cron: update
 
 variables:
-  - &branch 'nix/update-flake-inputs'
-  - &message 'nix: update flake inputs'
+  - &branch 'nix/update-plugins-flake-inputs'
+  - &message 'nix: update plugins & flake inputs'
 
 steps:
   - name: nix
@@ -12,6 +12,8 @@ steps:
     commands:
       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
       - nix flake update --inputs-from .
+      - cd pkgs/anvim-plugins
+      - nix run nixpkgs#nvfetcher
   - name: commit
     image: alpine/git
     depends_on: [nix]

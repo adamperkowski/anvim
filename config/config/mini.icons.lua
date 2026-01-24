@@ -1,5 +1,4 @@
 local icons = require("mini.icons")
-local diff = require("mini.diff")
 
 icons.setup({
   style = vim.env.TERM ~= "linux" and "glyph" or "ascii",
@@ -30,8 +29,3 @@ icons.setup({
   },
 })
 icons.mock_nvim_web_devicons()
-
-diff.setup({
-  view = { style = "number" },
-  delay = { text_change = 1000 },
-})

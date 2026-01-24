@@ -1,0 +1,10 @@
+[evergarden]
+fetch.git = "https://codeberg.org/evergarden/nvim"
+src.git = "https://codeberg.org/evergarden/nvim"
+passthru.as = "evergarden"
+
+[lynn-nvim]
+fetch.git = "https://codeberg.org/comfysage/lynn.nvim"
+src.git = "https://codeberg.org/comfysage/lynn.nvim"
+passthru.start = "true"
+passthru.as = "lynn"

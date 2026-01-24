@@ -3,6 +3,12 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+
+    gift-wrap = {
+      url = "github:tgirlcloud/gift-wrap";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,15 +36,17 @@
             }
           )
         );
+
+      mkPackages =
+        default: pkgs:
+        let
+          generatedPackages = import ./nix/default.nix { inherit pkgs inputs; };
+          defaultPackage = lib.optionalAttrs default { default = generatedPackages.anvim; };
+        in
+        generatedPackages // defaultPackage;
     in
     {
-      packages = forAllSystems (pkgs: {
-        default = pkgs.callPackage ./nix/default.nix { inherit inputs; };
-      });
-
-      legacyPackages = forAllSystems (pkgs: {
-        wrapNeovim = pkgs.callPackage ./nix/wrapper.nix { };
-      });
+      packages = forAllSystems (mkPackages true);
 
       homeManagerModules.default = import ./nix/hm-module.nix inputs;
 

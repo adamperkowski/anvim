@@ -1,8 +1,17 @@
+-- load plugins
+
+vim.iter(vim.api.nvim_get_runtime_file("lua/anvim/plugins/*.lua", true)):each(function(file)
+  local name = string.gsub(vim.fs.basename(file), "%.lua$", "")
+  require("lynn").import("anvim.plugins." .. name, true)
+end)
+require("lynn").setup()
+
+-- init
+
+require("anvim.lsp")
 require("anvim.keymap")
 
-vim.cmd.packadd("nvim.undotree")
-
-vim.o.grepprg = "grep -rni --"
+vim.o.grepprg = vim.fn.executable("rg") == 1 and "rg --vimgrep -. --" or "grep -rni --"
 vim.o.grepformat = "%f:%l:%c:%m"
 
 require("vim._extui").enable({ enable = true, msg = { target = "msg" } })

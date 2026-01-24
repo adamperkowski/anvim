@@ -14,6 +14,7 @@ pkgs.treefmt.withConfig {
       nixfmt = {
         command = "nixfmt";
         includes = [ "*.nix" ];
+        excludes = [ "**/generated.nix" ];
       };
 
       stylua = {

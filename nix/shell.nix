@@ -3,6 +3,7 @@
 let
   pkgInputs = with pkgs; [
     lua-language-server
+    nvfetcher
   ];
 in
 pkgs.mkShell {
