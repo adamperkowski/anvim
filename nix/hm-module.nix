@@ -17,7 +17,7 @@ let
 
   cfg = config.programs.anvim;
 
-  pkgs' = import ../default.nix { inherit pkgs inputs; };
+  pkgs' = import ./default.nix { inherit pkgs inputs; };
 in
 {
   options.programs.anvim = {
@@ -33,7 +33,7 @@ in
 
   config = mkIf cfg.enable {
     programs.anvim.package = pkgs'.anvim.override {
-      basePackage = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
+      basePackage = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
     };
 
     home.packages = [ cfg.package ];
