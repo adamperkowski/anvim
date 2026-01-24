@@ -5,18 +5,18 @@ my neovim config :3 (nix is certified crazy)
 try it out with
 
 ```sh
-nix run github:koibtw/anvim
+nix run git+https://codeberg.org/koibtw/anvim
 ```
 
 ## Features
 
-- Up-to-date with latest neovim
-- Fast af (think so at least)
-- Full nix support
-- [Evergarden] :3
+- up-to-date with latest neovim
+- fast af (think so at least)
+- full nix support
+- [evergarden] :3
 - LSP and stuff
 - NO bloat
-- Much more...
+- much more...
 
 ## License Information
 
@@ -38,9 +38,10 @@ See [`LICENSE`][LICENSE] and [`LICENSE-MIT`][LICENSE-MIT] for details.
     align="center">
 </div>
 
-[Evergarden]: https://evergarden.moe
+[evergarden]: https://evergarden.moe
+[robin]: https://codeberg.org/comfysage
 [isabel]: https://github.com/isabelroses
-[sebaguardian]: https://github.com/Sebaguardian
+[sebaguardian]: https://codeberg.org/sebaguardian
 
 [LICENSE]: ./LICENSE
 [LICENSE-MIT]: ./LICENSE-MIT
