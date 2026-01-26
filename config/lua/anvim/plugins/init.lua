@@ -17,7 +17,7 @@ return {
   {
     "blink.cmp",
     name = "blink.cmp",
-    event = "BufAdd",
+    event = "VimEnter",
   },
   {
     "indent-blankline.nvim",
@@ -36,12 +36,12 @@ return {
   {
     "mini.diff",
     name = "mini.diff",
-    event = "BufAdd",
+    event = "VimEnter",
   },
   {
     "mini.pairs",
     name = "mini.pairs",
-    event = "BufAdd",
+    event = "VimEnter",
   },
   {
     "cord.nvim",
